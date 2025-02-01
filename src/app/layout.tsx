@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NextAuth0",
-  description: "NextAuth0",
+  title: "MovieGroup",
+  description: "MovieGroup",
 };
 
 export default function RootLayout({
