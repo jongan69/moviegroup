@@ -1,0 +1,13 @@
+.background {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+} 

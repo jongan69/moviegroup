@@ -1,57 +1,61 @@
 import Image from "next/image";
+import { getSession } from "@auth0/nextjs-auth0";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+  const user = session?.user;
+  console.log(user);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="relative grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-retro bg-gradient-to-b from-yellow-200 via-red-200 to-pink-200 animate-fade-in">
+      <header className="row-start-1 flex flex-col items-center mt-16 sm:mt-0">
         <Image
-          className="dark:invert"
+          className="dark:invert animate-bounce"
           src="/next.svg"
-          alt="Next.js logo"
+          alt="App logo"
           width={180}
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <h1 className="text-5xl font-bold mt-4 text-shadow-md text-center text-blue-900 animate-slide-in">
+          Welcome to MovieGroup
+        </h1>
+        <p className="text-lg mt-2 text-center max-w-md text-blue-800 animate-fade-in">
+          Create groups with your friends and find movies you all love!
+        </p>
+      </header>
 
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {user ? (
+            <>
+              <a
+                className="rounded-full border-2 border-blue-900 transition-colors flex items-center justify-center bg-yellow-300 text-blue-900 gap-2 hover:bg-yellow-400 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 shadow-lg transform hover:scale-105 transition-transform duration-300"
+                href="/create-group"
+              >
+                Create a Group
+              </a>
+              <a
+                className="rounded-full border-2 border-blue-900 transition-colors flex items-center justify-center bg-yellow-300 text-blue-900 hover:bg-yellow-400 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 shadow-lg transform hover:scale-105 transition-transform duration-300"
+                href="/find-movies"
+              >
+                Find Movies
+              </a>
+            </>
+          ) : (
+            <a
+              className="mt-4 text-sm text-white bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-full px-6 py-3 shadow-lg transform hover:scale-105 transition-transform duration-300"
+              href="/api/auth/login"
+            >
+              Login to get started
+            </a>
+          )}
         </div>
       </main>
+
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-blue-900 transform hover:scale-105 transition-transform duration-300"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -66,7 +70,7 @@ export default function Home() {
           Learn
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-blue-900 transform hover:scale-105 transition-transform duration-300"
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -81,7 +85,7 @@ export default function Home() {
           Examples
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-blue-900 transform hover:scale-105 transition-transform duration-300"
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
