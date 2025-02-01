@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getSession } from "@auth0/nextjs-auth0";
+import Link from "next/link";
 
 export default async function Home() {
   const session = await getSession();
@@ -43,12 +44,12 @@ export default async function Home() {
               </a>
             </>
           ) : (
-            <a
+            <Link
               className="mt-4 text-sm text-white bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-full px-6 py-3 shadow-lg transform hover:scale-105 transition-transform duration-300"
               href="/api/auth/login"
             >
               Login to get started
-            </a>
+            </Link>
           )}
         </div>
       </main>

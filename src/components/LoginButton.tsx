@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const LoginButton = () => {
-    return <a href="/api/auth/login">Log In</a>;
+    return <Link href="/api/auth/login">Log In</Link>;
   };

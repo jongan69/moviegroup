@@ -1,8 +1,8 @@
 import clientPromise from "@/utils/mongodb";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { ObjectId } from "mongodb";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest) {
     const { movieId, groupId } = req.body;
 
     const client = await clientPromise;

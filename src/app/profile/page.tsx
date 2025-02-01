@@ -1,5 +1,5 @@
 import { getSession } from "@auth0/nextjs-auth0";
-import ProfileClient from "./components/user-client";
+// import ProfileClient from "./components/user-client";
 import ProfileServer from "./components/user-server";
 import { redirect } from "next/navigation";
 import styles from './Profile.module.css'; // Import a CSS module for custom styles

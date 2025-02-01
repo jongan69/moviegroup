@@ -5,6 +5,7 @@ import { SignupButton } from "@/components/SignupButton";
 import { LoginButton } from "@/components/LoginButton";
 import { LogoutButton } from "@/components/LogoutButton";
 import React, { useState } from "react";
+import Link from "next/link";
 
 // Extracted menu links to a constant
 const menuLinks = [
@@ -46,13 +47,13 @@ const NavBar = () => {
           {/* Conditionally render links based on screen size */}
           <div className="hidden md:flex gap-4 md:gap-6 lg:gap-8 items-center">
             {menuLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-gray-200 hover:text-blue-300 transition-colors whitespace-nowrap"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -70,13 +71,13 @@ const NavBar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden flex flex-col items-start px-4 pb-4">
           {menuLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-gray-200 hover:text-blue-300 transition-colors py-2"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

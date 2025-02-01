@@ -1,14 +1,20 @@
 import { NextPage } from "next";
-import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import React from "react";
 import CreateGroupForm from "../../components/CreateGroupForm";
 
+// Define a type for the group object
+interface Group {
+  groupName: string;
+  // Add other properties if needed
+}
+
 const Groups: NextPage = withPageAuthRequired(
   async () => {
-    const session = await getSession();
-    const user: any = session?.user;
+    // const session = await getSession();
+    // const user: any = session?.user;
 
-    const groups = await fetch('/api/fetch-groups').then(res => res.json());
+    const groups: Group[] = await fetch('/api/fetch-groups').then(res => res.json());
     console.log(groups);
     
     return (
@@ -23,7 +29,7 @@ const Groups: NextPage = withPageAuthRequired(
           {/* Groups list - you'll need to fetch and map through your groups */}
           <div className="space-y-2 p-4">
             {/* Placeholder groups - replace with actual data */}
-            {groups.map((group: any, index: number) => (
+            {groups.map((group: Group, index: number) => (
               <div
                 key={index}
                 className="p-3 bg-white rounded-lg shadow hover:bg-gray-50 cursor-pointer"

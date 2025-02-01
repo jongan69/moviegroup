@@ -1,6 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
 
     try {
 
@@ -12,7 +10,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
 
       const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${minDate}&release_date.lte=${maxDate}`, {
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZWRlMzEwZmRmMDViNTUyZDQ5NDcyNzMxMWQyYjNmMyIsIm5iZiI6MTczODQyNzQxMi43MjIsInN1YiI6IjY3OWU0YzE0MGQxOWYzMGFjMTk1NDkzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vsDdCgNPCDTEZ2rFPxmDxMaPYqAEjpAcyjg45NPbZN8',
+          'Authorization': `Bearer ${process.env.MOVIEDB_API_KEY}`,
           'accept': 'application/json'
         }
       });

@@ -10,7 +10,7 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
-      const { groupName, image } = req.body;
+      const { groupName } = req.body;
 
       const client = await clientPromise;
       const db = client.db('movie-group');
