@@ -1,16 +1,16 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 import clientPromise from '../../../utils/mongodb';
 import { getSession } from '@auth0/nextjs-auth0';
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
     try {
       // Ensure the user is authenticated
-      const session = await getSession(req, res);
+      const session = await getSession();
       if (!session || !session.user) {
-        return res.status(401).json({ error: 'Unauthorized' });
+        return Response.json({ error: 'Unauthorized' }, { status: 401 });
       }
 
-      const { groupName } = req.body;
+      const { groupName } = await req.json();
 
       const client = await clientPromise;
       const db = client.db('movie-group');

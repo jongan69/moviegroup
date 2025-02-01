@@ -1,11 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '../../../utils/mongodb';
 import { getSession } from '@auth0/nextjs-auth0';
 
-export default async function GET(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getSession(req, res);
+export async function GET() {
+  const session = await getSession();
   if (!session || !session.user) {
-    return Response.json({ error: 'Unauthorized' });
+    return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   const client = await clientPromise;
